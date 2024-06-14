@@ -18,9 +18,10 @@ import {
   ModalCloseButton,
   ModalFooter,
   Tooltip,
+  ModalBody,
 } from "@chakra-ui/react";
-import {Icon} from "@chakra-ui/react";
-import {RiLogoutCircleLine} from "react-icons/ri";
+import { Icon } from "@chakra-ui/react";
+import { RiLogoutCircleLine } from "react-icons/ri";
 import {
   HamburgerIcon,
   CloseIcon,
@@ -28,17 +29,16 @@ import {
   MoonIcon,
   SunIcon,
 } from "@chakra-ui/icons";
-import {LOGIN, REGISTER, ROOT} from "../../lib/routes";
-import {Link as routerLink} from "react-router-dom";
-import Newpost from "../posts/NewPost";
-import {ModalBody} from "react-bootstrap";
-import {useLogout} from "../../hooks/auths";
-import {useAuth} from "../../hooks/auths";
+import { LOGIN, REGISTER, ROOT } from "../../lib/routes";
+import { Link as routerLink } from "react-router-dom";
+import Newpost from "../blogs/NewBlog";
+import { useLogout } from "../../hooks/auths";
+import { useAuth } from "../../hooks/auths";
 
 export default function Navbar() {
-  const {colorMode, toggleColorMode} = useColorMode();
-  const {logout, isLoading} = useLogout();
-  const {user, authLoading} = useAuth();
+  const { colorMode, toggleColorMode } = useColorMode();
+  const { logout, isLoading } = useLogout();
+  const { user } = useAuth();
   const {
     isOpen: isMenuOpen,
     onOpen: onMenuOpen,
@@ -51,23 +51,23 @@ export default function Navbar() {
   } = useDisclosure();
 
   const Links = [
-    {id: 1, path: ROOT, name: "Home"},
-    {id: 2, path: LOGIN, name: "Sign in"},
-    {id: 3, path: REGISTER, name: "Create an account"},
+    { id: 1, path: ROOT, name: "Home" },
+    { id: 2, path: LOGIN, name: "Sign in" },
+    { id: 3, path: REGISTER, name: "Create an account" },
   ];
   return (
-    <Container maxW='1300px'>
+    <Container maxW="1300px">
       <Box bg={useColorModeValue("gray.100", "gray.900")} px={4}>
         <Flex h={16} alignItems={"center"} justifyContent={"space-between"}>
           <IconButton
             size={"md"}
             icon={isMenuOpen ? <CloseIcon /> : <HamburgerIcon />}
             aria-label={"Open Menu"}
-            display={{md: "none"}}
+            display={{ md: "none" }}
             onClick={isMenuOpen ? onMenuClose : onMenuOpen}
           />
           <HStack spacing={8} alignItems={"center"}>
-            <Box as='b' fontSize='2xl'>
+            <Box as="b" fontSize="2xl">
               <Link
                 as={routerLink}
                 to={ROOT}
@@ -75,13 +75,17 @@ export default function Navbar() {
                   textDecoration: "none",
                 }}
               >
-                Logo
+                Blogify
               </Link>
             </Box>
 
-            <HStack as={"nav"} spacing={4} display={{base: "none", md: "flex"}}>
+            <HStack
+              as={"nav"}
+              spacing={4}
+              display={{ base: "none", md: "flex" }}
+            >
               {!user ? (
-                Links.map(link => (
+                Links.map((link) => (
                   <Link
                     px={2}
                     py={1}
@@ -127,7 +131,7 @@ export default function Navbar() {
                 Create Post
               </Button>
             ) : (
-              <Tooltip label='Activate me, captain! Login required'>
+              <Tooltip label="Activate me, captain! Login required">
                 <Button
                   variant={"solid"}
                   colorScheme={"teal"}
@@ -141,7 +145,6 @@ export default function Navbar() {
                 </Button>
               </Tooltip>
             )}
-            {/* Modal */}
             <Modal
               closeOnOverlayClick={false}
               isOpen={isModalOpen}
@@ -159,9 +162,9 @@ export default function Navbar() {
             {/* Modal end */}
             {user && (
               <Button
-                ml='auto'
-                colorScheme='teal'
-                size='sm'
+                ml="auto"
+                colorScheme="teal"
+                size="sm"
                 onClick={logout}
                 isLoading={isLoading}
               >
@@ -172,10 +175,10 @@ export default function Navbar() {
         </Flex>
 
         {isMenuOpen ? (
-          <Box pb={4} display={{md: "none"}}>
+          <Box pb={4} display={{ md: "none" }}>
             <Stack as={"nav"} spacing={4}>
               {!user ? (
-                Links.map(link => (
+                Links.map((link) => (
                   <Link
                     px={2}
                     py={1}
