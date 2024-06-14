@@ -39,7 +39,6 @@ const SingleBlog = ({ blog }) => {
   } = useDisclosure();
 
   const { deleteBlog, isLoading: deleteLoading } = useDeleteBlog(_id);
-  const { user: blogAuthor, isLoading: userLoading } = useUser(authorId);
 
   const formatPostedTime = (date) => {
     return formatDistanceToNow(new Date(date), { addSuffix: true });
@@ -123,7 +122,7 @@ const SingleBlog = ({ blog }) => {
         size={"xl"}
       >
         <ModalOverlay />
-        <ModalContent>
+        <ModalContent maxW="90%" w={{ base: "full", sm: "lg" }}>
           <ModalCloseButton />
           <ModalBody pb={12}>
             <EditBlog onModalClose={onModalClose} blogId={blog._id} />

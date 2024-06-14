@@ -76,6 +76,7 @@ export default function Navbar() {
                 _hover={{
                   textDecoration: "none",
                 }}
+                display={{ base: "none", md: "block" }}
               >
                 Blogify
               </Link>
@@ -117,7 +118,11 @@ export default function Navbar() {
             </HStack>
           </HStack>
           <Flex alignItems={"center"}>
-            <Button mr={4} onClick={toggleColorMode}>
+            <Button
+              mr={4}
+              onClick={toggleColorMode}
+              display={{ base: "none", md: "block" }}
+            >
               {colorMode === "light" ? <MoonIcon /> : <SunIcon />}
             </Button>
             {user ? (
@@ -153,7 +158,7 @@ export default function Navbar() {
               size={"xl"}
             >
               <ModalOverlay />
-              <ModalContent>
+              <ModalContent maxW="90%" w={{ base: "full", sm: "lg" }}>
                 <ModalCloseButton />
                 <ModalBody pb={12}>
                   <Newpost onModalClose={onModalClose} />

@@ -5,10 +5,8 @@ import {
   FormLabel,
   Input,
   Stack,
-  Link,
   Button,
   Heading,
-  Text,
   Textarea,
   useColorModeValue,
   FormHelperText,
@@ -39,12 +37,22 @@ export default function SimpleCard({ onModalClose }) {
   };
 
   return (
-    <Flex minH={"40vh"} align={"center"} justify={"center"}>
-      <Stack spacing={8} mx={"auto"} maxW={"90%"} minW={"90%"} py={12}>
+    <Flex minH={"40vh"} align={"center"} justify={"center"} px={[4, 8, 16]}>
+      <Stack
+        spacing={8}
+        mx={"auto"}
+        maxW={["100%", "90%", "80%"]}
+        minW={["100%", "90%", "80%"]}
+        py={12}
+      >
         <Stack align={"center"}>
-          <Heading fontSize={"4xl"}>Add new blog</Heading>
+          <Heading fontSize={["2xl", "3xl", "4xl"]}>Add new blog</Heading>
         </Stack>
-        <Box rounded={"lg"} bg={useColorModeValue("white", "gray.700")} p={8}>
+        <Box
+          rounded={"lg"}
+          bg={useColorModeValue("white", "gray.700")}
+          p={[4, 6, 8]}
+        >
           <Stack>
             <form onSubmit={handleSubmit(handleAddBlog)}>
               <FormControl id="title">
@@ -58,7 +66,7 @@ export default function SimpleCard({ onModalClose }) {
                 </FormHelperText>
               </FormControl>
               <FormControl id="desc">
-                <FormLabel> Description</FormLabel>
+                <FormLabel>Description</FormLabel>
                 <Textarea
                   placeholder='I know writing can be tough, Just type "blah blah blah" to test things out!'
                   as={TextareaAutosize}
