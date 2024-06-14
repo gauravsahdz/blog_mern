@@ -19,16 +19,18 @@ import Navbar from "./Navbar";
 import axios from "axios";
 
 const API_URL = import.meta.env.VITE_API_URL;
+
 export default function CurrentBlog() {
   const { blogId } = useParams();
   const [currentBlog, setCurrentBlog] = useState([]);
+
   useEffect(() => {
     const fetchBlog = async () => {
       const res = await axios.get(`${API_URL}/blogs/${blogId}`);
       setCurrentBlog(res.data.data);
     };
     fetchBlog();
-  }, []);
+  }, [blogId]);
 
   return (
     <>
@@ -53,7 +55,14 @@ export default function CurrentBlog() {
             />
           </motion.button>
           <Heading as="h2">{currentBlog.title}</Heading>
-
+          <Image
+            src={currentBlog.imageLink}
+            alt={currentBlog.title}
+            marginTop="5"
+            borderRadius="md"
+            width="100%"
+            height="300px"
+          />
           <Divider marginTop="5" />
           <Grid
             templateColumns="repeat(auto-fill, minmax(100%, 1fr))"

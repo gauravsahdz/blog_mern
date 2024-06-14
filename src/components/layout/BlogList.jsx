@@ -16,21 +16,34 @@ export default function BlogList() {
   const { blogs, isLoading } = useBlogs();
   if (isLoading)
     return (
-      <Box pos="absolute" top="50%" left="50%">
+      <Box
+        display="flex"
+        justifyContent="center"
+        alignItems="center"
+        minH="100vh"
+      >
         <Spinner size="xl" />
       </Box>
     );
 
   return (
-    <Container maxW={"7xl"} p="12">
-      <Heading as="h2" marginTop="5">
+    <Container maxW="7xl" p={{ base: 4, md: 8 }} py={{ base: 6, md: 12 }}>
+      <Heading
+        as="h2"
+        marginTop={{ base: 3, md: 5 }}
+        fontSize={{ base: "2xl", md: "4xl" }}
+      >
         Latest articles
       </Heading>
-      <Divider marginTop="5" />
+      <Divider marginTop={{ base: 3, md: 5 }} />
       <Grid
-        templateColumns="repeat(auto-fill, minmax(300px, 2fr))"
+        templateColumns={{
+          base: "1fr",
+          sm: "repeat(2, 1fr)",
+          md: "repeat(3, 1fr)",
+        }}
         gap={6}
-        marginTop="5"
+        marginTop={{ base: 5, md: 6 }}
       >
         {blogs?.map((blog) => (
           <GridItem key={blog._id}>

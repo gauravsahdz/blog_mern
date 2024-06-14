@@ -14,6 +14,7 @@ import {
   ModalCloseButton,
   ModalBody,
   Grid,
+  Image,
 } from "@chakra-ui/react";
 import { useAuth } from "../../hooks/auths";
 import { formatDistanceToNow } from "date-fns";
@@ -57,13 +58,21 @@ const SingleBlog = ({ blog }) => {
         display="flex"
         flexDirection="column"
       >
-        <Box flex="1">
+        <Box flex="1" as={RouterLink} to={`/blogs/${blog?._id}`}>
+          <Image
+            src={blog.imageLink}
+            alt={blog.title}
+            borderRadius="md"
+            _hover={{
+              cursor: "pointer",
+              transform: "scale(1.05)",
+              transition: "transform 0.2s",
+            }}
+          />
           <Heading fontSize="xl" marginTop="2">
             <Link
               textDecoration="none"
               _hover={{ textDecoration: "underline" }}
-              as={RouterLink}
-              to={`/blogs/${blog?._id}`}
             >
               {blog.title}
             </Link>
@@ -73,9 +82,9 @@ const SingleBlog = ({ blog }) => {
           </Text>
         </Box>
         <Flex align="center" marginTop="auto">
-          <Avatar name={blogAuthor?.username} size="sm" />
+          <Avatar name={blog?.author} size="sm" />
           <Box marginLeft={3}>
-            <Text fontWeight="bold">{blogAuthor?.username}</Text>
+            <Text fontWeight="bold">{blog?.author}</Text>
             <Text fontSize="sm" color="gray.500">
               {formatPostedTime(blog.createdAt)}
             </Text>

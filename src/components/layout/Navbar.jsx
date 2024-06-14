@@ -14,13 +14,11 @@ import {
   useDisclosure,
   ModalOverlay,
   ModalContent,
-  ModalHeader,
   ModalCloseButton,
-  ModalFooter,
-  Tooltip,
   ModalBody,
+  Tooltip,
+  Icon,
 } from "@chakra-ui/react";
-import { Icon } from "@chakra-ui/react";
 import { RiLogoutCircleLine } from "react-icons/ri";
 import {
   HamburgerIcon,
@@ -55,9 +53,13 @@ export default function Navbar() {
     { id: 2, path: LOGIN, name: "Sign in" },
     { id: 3, path: REGISTER, name: "Create an account" },
   ];
+
   return (
     <Container maxW="1300px">
-      <Box bg={useColorModeValue("gray.100", "gray.900")} px={4}>
+      <Box
+        bg={useColorModeValue("gray.100", "gray.900")}
+        px={{ base: 4, md: 8 }}
+      >
         <Flex h={16} alignItems={"center"} justifyContent={"space-between"}>
           <IconButton
             size={"md"}
@@ -78,7 +80,6 @@ export default function Navbar() {
                 Blogify
               </Link>
             </Box>
-
             <HStack
               as={"nav"}
               spacing={4}
@@ -174,7 +175,7 @@ export default function Navbar() {
           </Flex>
         </Flex>
 
-        {isMenuOpen ? (
+        {isMenuOpen && (
           <Box pb={4} display={{ md: "none" }}>
             <Stack as={"nav"} spacing={4}>
               {!user ? (
@@ -208,7 +209,7 @@ export default function Navbar() {
               )}
             </Stack>
           </Box>
-        ) : null}
+        )}
       </Box>
     </Container>
   );
